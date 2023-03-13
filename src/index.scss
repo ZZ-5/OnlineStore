@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+}
+
+body {
+    background-color: #fff;
+    color: #222;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+
+.wrapper {
+    width: 128rem;
+    margin: 5rem auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    border-radius: 5rem;
+    font-size: 2rem;
+    padding: 0 2rem;
+    background: #f2f2f2;
+    border: 1px solid silver;
+    color: #222;
+    font-weight: 300;
+    width: 31rem;
+    height: 5rem;
+}
+
+.btn_bag {
+    display: flex;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: transform 500ms ease;
+    position: relative;
+}
+
+
+.btn_bag-active {
+    transform: scale(1.5);
+    position: relative;
+}
+
+.bag__count {
+    font-weight: 600;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 1.2rem;
+    left: 1.5rem;
+    background-color: white;
+    padding: 0.1rem 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid green;
+}
+
+.nav {
+    list-style: none;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+
+    &__item {
+        margin-left: 2rem;
+        cursor: pointer;
+        transition: opacity 500ms ease;
+    }
+
+    &__item:hover {
+        opacity: 0.5;
+    }
+
+    &__img {
+        width: 2.4rem;
+        height: 2.4rem;
+        padding: 0.5rem;
+    }
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.shop-cart {
+    position: absolute;
+    top: 4rem;
+    right: 0rem;
+    width: 45rem;
+    max-height: 50rem;
+    overflow: auto;
+    background: #fafafa;
+    z-index: 2;
+    box-shadow: 7px 8px 51px 0px rgba(0, 0, 0, 0.49);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    transition: transform 500ms ease;
+}
+
+.order {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+
+    &__img {
+        height: 10rem;
+        width: 10rem;
+    }
+}
+
+.order:not(:last-child) {
+    padding-bottom: 3rem;
+}
+
+.order h2 {
+    font-size: 2rem;
+
+}
+
+.order p {
+    font-weight: 600;
+    color: #797979;
+}
+
+.btn_delete {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: transform 500ms ease;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.btn_delete-active,
+.btn_delete:hover {
+    transform: scale(1.5);
+    display: flex;
+    justify-content: center;
+    transition: transform 500ms ease;
+}
+
+.delete-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.sum {
+    display: flex;
+    font-weight: 600;
+
+    &-value {
+        margin-left: auto;
+        margin-right: 5rem;
+        color: #5fa36a;
+    }
+}
+
+.presentation {
+    margin: 5rem 0;
+    background: url('./img/bg.jpeg') no-repeat;
+    width: 100%;
+    height: 50rem;
+    background-size: cover;
+    background-position: right center;
+    background-blend-mode: multiply;
+    background-color: #787878;
+    position: relative;
+}
+
+.presentation::after {
+    content: "Лучшие товары для вашего дома";
+    position: absolute;
+    top: 10rem;
+    left: 5rem;
+    font-size: 4rem;
+    font-weight: 600;
+    color: #fff;
+    width: 30rem;
+}
+
+.presentation::before {
+    content: "по низким ценам";
+    position: absolute;
+    top: 25rem;
+    left: 5rem;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #fff;
+    width: 30rem;
+}
+
+.catigories {
+    font-size: 2rem;
+    display: flex;
+    margin-bottom: 5rem;
+}
+
+.catigories div {
+    background: #f2f2f2;
+    border-radius: 5rem;
+    padding: 1rem 2rem;
+    margin-right: 3rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease;
+}
+
+.catigories div:hover {
+    transform: scale(1.2);
+    border-color: silver;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    column-gap: 6.4rem;
+}
+
+.items h2,
+.full-item h2,
+.items p,
+.full-item p,
+.items b,
+.full-item b {
+    margin: 2rem 2rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.items b,
+.full-item b {
+    color: #5fa36a;
+}
+
+.item {
+    height: 50rem;
+    border-radius: 1rem 1rem;
+    width: 30%;
+    margin-bottom: 5rem;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    position: relative;
+}
+
+.item img,
+.full-item img {
+    width: 100%;
+    height: 65%;
+    border-radius: 1rem 1rem;
+    transition: transform 500ms ease;
+    cursor: pointer;
+}
+
+.item img:hover,
+.full-item img:hover {
+    transform: scale(1.1);
+}
+
+.add-to-cart,
+.full-item .add-to-cart {
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+    background-color: #ca5252;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    line-height: 4rem;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 2rem;
+    transition: transform 500ms ease;
+}
+
+.add-to-cart:hover,
+.full-item .add-to-cart:hover {
+    transform: scale(1.3) translateY(-0.5rem);
+}
+
+.full-item {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.791);
+    z-index: 5;
+    overflow: auto;
+
+    &__window {
+        width: 60rem;
+        position: relative;
+        margin: 10% auto;
+        padding: 4rem 3rem;
+        background: #fff;
+        border-radius: 1rem;
+    }
+}
+
+footer {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 5rem;
+}
