@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function Orders({ item, onDelete }) {
-    // console.log(onDelete);
     return (
         <div className='order'>
             <img className='order__img' src={"./img/" + item.image} />
