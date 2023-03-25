@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Orders from './Orders';
 
-const showOrders = (orders, onDelete) => {
+const showOrders = (orders, onDelete, decreaseOrder, increaseOrder) => {
+
     let sum = orders.reduce((sum, el) => {
         return sum + +el.price;
     }, 0)
 
     return (<>
         {orders.map(el => (
-            <Orders key={el.id} item={el} onDelete={onDelete} />
+            <Orders key={el.id} item={el} onDelete={onDelete} decreaseOrder={decreaseOrder} increaseOrder={increaseOrder} orders={orders} />
         ))}
         <div className='sum'>Сумма заказа:<span className='sum-value'>{new Intl.NumberFormat().format(sum)}$</span></div>
     </>)
@@ -22,15 +23,14 @@ const showNothing = () => {
     )
 }
 
-export default function Header({ orders, onDelete, setFilter, cartOpen, setCartOpen, bagCount, downBagCount }) {
+export default function Header({ orders, onDelete, cartOpen, setCartOpen, decreaseOrder, increaseOrder }) {
+
 
     return (
         <header>
             <div className='header'>
                 <span className='logo'>House Stuff</span>
-                <input placeholder='Поиск...' className='search' type='text'
-                    onChange={e => setFilter(e.target.value)}
-                />
+
                 <ul className='nav'>
                     <button onClick={() => setCartOpen(cartOpen = !cartOpen)}
                         className={`btn_bag ${cartOpen && 'btn_bag-active'}`}>
@@ -40,12 +40,12 @@ export default function Header({ orders, onDelete, setFilter, cartOpen, setCartO
                             viewBox="0 0 16 16">
                             <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                         </svg>
-                        <div className='bag__count'>{bagCount}</div>
+                        <div className='bag__count'>{orders.length}</div>
                     </button>
                     {cartOpen && (
                         <div className='shop-cart'>
                             {orders.length > 0 ?
-                                showOrders(orders, onDelete) : showNothing()}
+                                showOrders(orders, onDelete, decreaseOrder, increaseOrder) : showNothing()}
                         </div>
                     )}
                     <li className='nav__item'>О нас</li>

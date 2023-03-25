@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Categories = ({ chooseCategory }) => {
+export const Categories = ({ chooseCategory, setFilter }) => {
 
     const [categories, setCategoris] = useState([
         {
@@ -29,6 +29,9 @@ export const Categories = ({ chooseCategory }) => {
             {categories.map(el => (
                 <div key={el.key} onClick={() => chooseCategory(el.key)}>{el.name}</div>
             ))}
+            <input placeholder='Поиск...' className='search' type='text'
+                onChange={e => setFilter(e.target.value)}
+            />
         </div>
     )
 }

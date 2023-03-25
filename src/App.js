@@ -69,7 +69,7 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false)
   const [filter, setFilter] = useState('')
   const [category, setCategory] = useState('')
-  const [bagCount, setBagCount] = useState(0)
+  const [countOrder, setCountOrder] = useState(1)
 
   const filtered = useMemo(() => {
     const search = arr.filter(p => {
@@ -82,23 +82,50 @@ function App() {
 
   function addToOrder(item) {
 
-    const id = orders.length === 0 ? 1 : orders[orders.length - 1].id + 1;
+    // const id = orders.length === 0 ? 1 : orders[orders.length - 1].id + 1;
+    // console.log(orders);
+
+    // let isInArray = false
+    // orders.forEach(el => {
+    //   if (el.id === newItem.id) {
+    //     isInArray = true
+    //   }
+    // })
+    // if (!isInArray) {
+    // setOrders([...orders, newItem])
+    // }
 
     const newItem = {
-      id: id,
+      count: 1,
+      id: item.id,
       title: item.title,
       image: item.image,
       category: item.category,
       description: item.description,
       price: item.price
     }
-    setOrders([...orders, newItem])
-    setBagCount(bagCount + 1)
+
+    const elem = orders.find(el => {
+      return el.id === item.id
+    })
+    if (!elem) {
+      setOrders([...orders, newItem])
+    }
   }
+
+  const increaseOrder = (item) => {
+
+  }
+
+
+  const decreaseOrder = () => {
+
+  }
+
+
 
   const deleteOrder = (id) => {
     setOrders(orders.filter((el) => el.id !== id))
-    setBagCount(bagCount - 1)
   }
 
   const chooseCategory = (category) => {
@@ -113,9 +140,10 @@ function App() {
   return (
     <div className="wrapper">
 
-      <Header orders={orders} onDelete={deleteOrder} cartOpen={cartOpen} setCartOpen={setCartOpen} setFilter={setFilter} bagCount={bagCount} />
-      <Categories chooseCategory={chooseCategory} />
-      <Items onShowItem={onShowItem} items={filtered} onAdd={addToOrder} arr={arr} setBagCount={setBagCount} />
+      <Header orders={orders} onDelete={deleteOrder} cartOpen={cartOpen} setCartOpen={setCartOpen} setFilter={setFilter}
+        increaseOrder={increaseOrder} decreaseOrder={decreaseOrder} />
+      <Categories chooseCategory={chooseCategory} setFilter={setFilter} />
+      <Items onShowItem={onShowItem} items={filtered} onAdd={addToOrder} arr={arr} />
       {showFullItem && <ShowFullItem item={fullItem} onAdd={addToOrder}
         onShowItem={onShowItem} setShowFullItem={setShowFullItem} />}
       <Footer />
