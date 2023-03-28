@@ -69,7 +69,7 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false)
   const [filter, setFilter] = useState('')
   const [category, setCategory] = useState('')
-  const [countOrder, setCountOrder] = useState(1)
+
 
   const filtered = useMemo(() => {
     const search = arr.filter(p => {
@@ -102,7 +102,8 @@ function App() {
       image: item.image,
       category: item.category,
       description: item.description,
-      price: item.price
+      price: item.price,
+      totalPrice: item.price
     }
 
     const elem = orders.find(el => {
@@ -114,13 +115,33 @@ function App() {
   }
 
   const increaseOrder = (item) => {
-
+    const count = orders.map(el => {
+      if (el.id === item.id) {
+        return { ...el, count: el.count + 1 }
+      }
+      return el
+    })
+    setOrders(count)
   }
 
 
-  const decreaseOrder = () => {
-
+  const decreaseOrder = (item) => {
+    const count = orders.map(el => {
+      if (el.id === item.id) {
+        return { ...el, count: el.count - 1 }
+      }
+      return el
+    })
+    if (item.count > 1) {
+      setOrders(count)
+    }
   }
+
+  useMemo(() => {
+    orders.totalPrice = orders.map(el => {
+      el.totalPrice = el.price * el.count
+    }, [orders])
+  })
 
 
 
